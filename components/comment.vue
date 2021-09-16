@@ -1,38 +1,19 @@
 <template>
   <div>
-    {{id}} comment: {{comment}}
+    comment: {{comment}}
   </div>
 </template>
 
 
 
 <script>
-import gql from "graphql-tag"
 export default {
   name: 'CommentComponent',
-  apollo: {
+   props:{
     comment: {
-      query () {
-        const query = `query comment_${this.id}($id: ID!) {
-          comment(id: $id) {
-            id
-            name
-          }
-        }`
-        return gql(query)
-      },
-      variables() {
-        return {
-          id: this.id
-        }
-      }
+      type: Object,
+      default: ()=> {}
     }
   },
-   props:{
-    id: {
-      type: [String, Number],
-      required: true
-    }
-  }
 }
 </script>
